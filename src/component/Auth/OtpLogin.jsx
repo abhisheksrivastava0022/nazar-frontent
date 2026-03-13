@@ -34,15 +34,15 @@ const OtpLogin = () => {
     const otpRefs = useRef([]);
 
     // Timer for OTP resend
-    useEffect(() => {
-        let interval;
-        if (timer > 0) {
-            interval = setInterval(() => {
-                setTimer((prev) => prev - 1);
-            }, 1000);
-        }
-        return () => clearInterval(interval);
-    }, [timer]);
+    // useEffect(() => {
+    //     let interval;
+    //     if (timer > 0) {
+    //         interval = setInterval(() => {
+    //             setTimer((prev) => prev - 1);
+    //         }, 1000);
+    //     }
+    //     return () => clearInterval(interval);
+    // }, [timer]);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -159,7 +159,7 @@ const OtpLogin = () => {
                     anchorVertical: "top",
                     anchorHorizontal: "right",
                 });
-                setTimer(60);
+                // setTimer(60);
                 setStep(2);
                 // Focus first OTP input after a brief delay
                 //setTimeout(() => otpRefs.current[0]?.focus(), 100);

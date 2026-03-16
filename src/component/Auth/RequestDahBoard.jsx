@@ -47,11 +47,11 @@ const RequestDashboard = () => {
   const getStatusBadge = (status) => {
     switch (status) {
       case 1:
-        return <span className="badge bg-warning text-dark">Pending</span>;
+        return <span className="badge  yellow-txt">Pending</span>;
       case 2:
-        return <span className="badge bg-success">Approved</span>;
+        return <span className="badge green-txt">Approved</span>;
       case 3:
-        return <span className="badge bg-danger">Rejected</span>;
+        return <span className="badge red-txt">Rejected</span>;
       default:
         return <span className="badge bg-secondary">Unknown</span>;
     }
@@ -62,10 +62,10 @@ const RequestDashboard = () => {
     switch (mode) {
       case "single":
         return (
-          <span className="badge bg-info text-dark">Manually Url Entered</span>
+          <span className="badge teal-txt ">Manually Url Entered</span>
         );
       case "bulk":
-        return <span className="badge bg-purple text-white">Bulk URLs</span>;
+        return <span className="badge blue-txt">Bulk URLs</span>;
       default:
         return <span className="badge bg-secondary">Unknown</span>;
     }
@@ -126,7 +126,7 @@ const RequestDashboard = () => {
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary text-break"
+            className=" text-break bule-txt"
           >
             {url}
           </a>
@@ -149,8 +149,8 @@ const RequestDashboard = () => {
           <div className="searching">
             <div className="row">
               <div className="col-md-5 ">
-                <div className="input-group">
-                  <span className="input-group-text bg-white">
+                <div className="input-group ">
+                  <span className=" blue-bg">
                     <i className="bi bi-search text-primary"></i>
                   </span>
                   <input
@@ -239,7 +239,7 @@ const RequestDashboard = () => {
                         Request ID: #{item.id}
                       </span>
                       <div className="d-flex gap-2">
-                        {getStatusBadge(item.status)}
+                        {getStatusBadge(item.status)} |
                         {getModeBadge(item.mode)}
                       </div>
                     </div>
@@ -248,32 +248,31 @@ const RequestDashboard = () => {
                   {/* Card Body */}
                   <div className="card-body">
                     <h5 className="card-title mb-3">
-                      Title: {item.title || "Untitled"}
+                     {item.title || "Untitled"}
                     </h5>
-
+ <div className="d-flex align-items-center">
+                        <i className="bi bi-calendar3 text-primary me-2"></i>
+                        <small className="text-muted">
+                          Registered On: {formatDate(item.createdAt)}
+                        </small>
+                      </div>
                     {/* URLs Accordion */}
                     <div
-                      className="accordion mb-2"
+                      className="accordion1 mb-2"
                       id={`urls-accordion-${item.id}`}
                     >
-                      <div className="accordion-item">
+                      <div className="accordion-item1">
                         <h2 className="accordion-header">
-                          <button
-                            className="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target={`#urls-collapse-${item.id}`}
-                            aria-expanded="false"
-                            aria-controls={`urls-collapse-${item.id}`}
-                          >
+                          
+                       
                             URLs
-                          </button>
+                          
                         </h2>
                         <div
-                          id={`urls-collapse-${item.id}`}
-                          className="accordion-collapse collapse"
+                         
+                        
                         >
-                          <div className="accordion-body">
+                          <div>
                             {renderUrls(item.urls)}
                           </div>
                         </div>
@@ -282,38 +281,23 @@ const RequestDashboard = () => {
 
                     {/* Description Accordion */}
                     <div className="accordion" id={`desc-accordion-${item.id}`}>
-                      <div className="accordion-item">
-                        <h2 className="accordion-header">
-                          <button
-                            className="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target={`#desc-collapse-${item.id}`}
-                            aria-expanded="false"
-                            aria-controls={`desc-collapse-${item.id}`}
-                          >
+                      <div >
+                        <h2 className="mt-2">
+                         
                             Description
-                          </button>
+                        
                         </h2>
-                        <div
-                          id={`desc-collapse-${item.id}`}
-                          className="accordion-collapse collapse"
-                        >
-                          <div className="accordion-body">
+                        
+                          <div >
                             {item.description || "No description available"}
                           </div>
-                        </div>
+                        
                       </div>
                     </div>
 
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-3">
                       {/* Registration Date */}
-                      <div className="d-flex align-items-center">
-                        <i className="bi bi-calendar3 text-primary me-2"></i>
-                        <small className="text-muted">
-                          Registered On: {formatDate(item.createdAt)}
-                        </small>
-                      </div>
+                     
 
                       {/* Evidence Section */}
                       {item.evidence ? (

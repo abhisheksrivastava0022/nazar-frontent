@@ -53,7 +53,7 @@ const Resources = () => {
                   </div>
                   <div className="card-footer bg-transparent border-0 pb-3">
                     <button className="btn btn-outline-primary btn-sm w-100">
-                      Download PDF
+                     <i class="bi bi-download me-1"></i>  Download PDF
                     </button>
                   </div>
                 </div>

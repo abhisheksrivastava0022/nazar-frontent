@@ -617,6 +617,7 @@ const CreateRequest = () => {
               /* Single URL Mode */
               <>
                 {/* URL Field with Okay Button */}
+              
                 <div className="mb-3">
                   <label htmlFor="url" className="form-label">
                     URL <span className="text-danger">*</span>
@@ -634,7 +635,7 @@ const CreateRequest = () => {
                     />
                     <button
                       type="button"
-                      className="btn btn-outline-primary"
+                      className="btn btn-outline-primary border-radius-norm"
                       onClick={addSingleUrl}
                     >
                       Add
@@ -885,7 +886,7 @@ const CreateRequest = () => {
 
             {/* Submit Buttons */}
             <div className="mb-3">
-              <label htmlFor="declaration" className="form-label">
+              <label htmlFor="declaration" className="form-label font-wt-normal">
                 <input
                   className={`form-check-input ${errors.title ? "is-invalid" : ""}`}
                   id="declaration"
@@ -910,17 +911,17 @@ const CreateRequest = () => {
               )}
             </div>
 
-            <div className="d-flex gap-2 justify-content-end">
+            <div className="d-flex gap-2 justify-content-end ">
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-primary outline-common"
                 disabled={loading || (mode === "bulk" && !bulkFile)}
               >
                 Preview & Submit
               </button>
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="btn btn-secondary outline-common-red"
                 onClick={() => navigate("/request-list")}
                 disabled={loading}
               >

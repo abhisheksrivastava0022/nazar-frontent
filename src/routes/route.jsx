@@ -29,22 +29,21 @@ import OtpLoginV2 from "../component/Auth/OtpLoginV2";
 export const routes = [
   {
     path: "/",
-    element: <OtpLogin />
+    element: <OtpLogin />,
   },
   {
     path: "/login",
-    element: <OtpLoginV2 />
+    element: <OtpLoginV2 />,
   },
   {
     path: "/prahari",
-    element: <OtpLoginV2 />
+    element: <OtpLoginV2 />,
   },
   {
     path: "/",
     element: <MainLayout />, // Layout is rendered for all nested routes
     //   errorElement: <ErrorBoundary />,
     children: [
-
       {
         path: "/request-list",
         element: <RequestDahBoard />,
@@ -57,16 +56,11 @@ export const routes = [
         path: "/resources",
         element: <Resources />,
       },
-
     ],
 
     loader: async ({ request }) => {
       //    return redirect('/login');
       return null;
     },
-
   },
-
-
-
 ];

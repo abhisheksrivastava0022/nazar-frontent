@@ -61,9 +61,7 @@ const RequestDashboard = () => {
   const getModeBadge = (mode) => {
     switch (mode) {
       case "single":
-        return (
-          <span className="badge teal-txt ">Manually Url Entered</span>
-        );
+        return <span className="badge teal-txt ">Manually Url Entered</span>;
       case "bulk":
         return <span className="badge blue-txt">Bulk URLs</span>;
       default:
@@ -136,6 +134,29 @@ const RequestDashboard = () => {
       console.error("Error parsing URLs:", error);
       return <small className="text-danger">Invalid URL format</small>;
     }
+  };
+
+  const FileItem = ({ file, label }) => {
+    return file ? (
+      <a
+        href={`${BASE_URL_API}/${file}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="d-flex align-items-center gap-2 px-3 py-2 border rounded text-decoration-none text-primary bg-light hover-shadow"
+        style={{ minWidth: "180px" }}
+      >
+        <i className="bi bi-download"></i>
+        <span className="small fw-medium">{label}</span>
+      </a>
+    ) : (
+      <div
+        className="d-flex align-items-center gap-2 px-3 py-2 border rounded bg-light text-muted"
+        style={{ minWidth: "180px" }}
+      >
+        <i className="bi bi-file-earmark-x"></i>
+        <span className="small">{label}</span>
+      </div>
+    );
   };
 
   return (
@@ -239,8 +260,7 @@ const RequestDashboard = () => {
                         Request ID: #{item.id}
                       </span>
                       <div className="d-flex gap-2">
-                        {getStatusBadge(item.status)} |
-                        {getModeBadge(item.mode)}
+                        {getStatusBadge(item.status)} |{getModeBadge(item.mode)}
                       </div>
                     </div>
                   </div>
@@ -248,89 +268,63 @@ const RequestDashboard = () => {
                   {/* Card Body */}
                   <div className="card-body">
                     <h5 className="card-title mb-3">
-                     {item.title || "Untitled"}
+                      {item.title || "Untitled"}
                     </h5>
- <div className="d-flex align-items-center">
-                        <i className="bi bi-calendar3 text-primary me-2"></i>
-                        <small className="text-muted">
-                          Registered On: {formatDate(item.createdAt)}
-                        </small>
-                      </div>
+                    <div className="d-flex align-items-center">
+                      <i className="bi bi-calendar3 text-primary me-2"></i>
+                      <small className="text-muted">
+                        Registered On: {formatDate(item.createdAt)}
+                      </small>
+                    </div>
                     {/* URLs Accordion */}
                     <div
                       className="accordion1 mb-2"
                       id={`urls-accordion-${item.id}`}
                     >
                       <div className="accordion-item1">
-                        <h2 className="accordion-header">
-                          
-                       
-                            URLs
-                          
-                        </h2>
-                        <div
-                         
-                        
-                        >
-                          <div>
-                            {renderUrls(item.urls)}
-                          </div>
+                        <h2 className="accordion-header">URLs</h2>
+                        <div>
+                          <div>{renderUrls(item.urls)}</div>
                         </div>
                       </div>
                     </div>
 
                     {/* Description Accordion */}
                     <div className="accordion" id={`desc-accordion-${item.id}`}>
-                      <div >
-                        <h2 className="mt-2">
-                         
-                            Description
-                        
-                        </h2>
-                        
-                          <div >
-                            {item.description || "No description available"}
-                          </div>
-                        
+                      <div>
+                        <h2 className="mt-2">Description</h2>
+
+                        <div>
+                          {item.description || "No description available"}
+                        </div>
                       </div>
                     </div>
 
-                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-3">
-                      {/* Registration Date */}
-                     
-
-                      {/* Evidence Section */}
-                      {item.evidence ? (
-                        <div className="d-flex gap-2 mt-2">
-                          {item.mode === "bulk" && item.csv_file && (
-                            <a
-                              href={`${BASE_URL_API}/${item.csv_file}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="btn btn-outline-primary btn-sm"
-                            >
-                              <i className="bi bi-file-earmark-spreadsheet me-1"></i>
-                              Download CSV
-                            </a>
-                          )}
-                          <a
-                            href={`${BASE_URL_API}/${item.evidence}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-outline-primary btn-sm"
-                          >
-                            <i className="bi bi-download me-1"></i>
-                            Download Evidence
-                          </a>
-                        </div>
-                      ) : (
-                        <div className="d-flex align-items-center justify-content-center gap-2 py-2 px-3 bg-light rounded mt-2">
-                          <i className="bi bi-file-earmark-x text-muted"></i>
-                          <small className="text-muted">
-                            No evidence available
-                          </small>
-                        </div>
+                    <div className="d-flex flex-wrap gap-3 mt-3">
+                      {item.mode === "bulk" && item.csv_file && (
+                        <FileItem file={item.csv_file} label="CSV File" />
                       )}
+
+                      <FileItem
+                        file={item.cbfc_certificate}
+                        label={
+                          item.cbfc_certificate
+                            ? "CBFC Certificate"
+                            : "No CBFC Certificate"
+                        }
+                      />
+
+                      <FileItem
+                        file={item.court_order}
+                        label={
+                          item.court_order ? "Court Order" : "No Court Order"
+                        }
+                      />
+
+                      <FileItem
+                        file={item.evidence}
+                        label={item.evidence ? "Evidence File" : "No Evidence"}
+                      />
                     </div>
                   </div>
                 </div>

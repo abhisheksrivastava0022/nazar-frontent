@@ -14,12 +14,17 @@ const CreateRequest = () => {
     title: "",
     url: "",
     description: "",
+    cbfc_certificate: null,
+    court_order: null,
     uploaded_evidence: null,
   });
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [fileName, setFileName] = useState("");
+  // const [fileName, setFileName] = useState("");
+  const [evidenceFileName, setEvidenceFileName] = useState("");
+  const [cbfcFileName, setCbfcFileName] = useState("");
+  const [courOrderFileName, setCourOrderFileName] = useState("");
   const [isValidUrl, setIsValidUrl] = useState(false);
   const [bulkFile, setBulkFile] = useState(null);
   const [bulkFileName, setBulkFileName] = useState("");
@@ -207,6 +212,24 @@ const CreateRequest = () => {
     if (!formData.title.trim()) {
       newErrors.title = "Movie Title is required";
     }
+
+    if (!formData.cbfc_certificate) {
+      newErrors.cbfc_certificate = "CBFC Certificate file is required";
+    } else if (formData.cbfc_certificate.size > 5 * 1024 * 1024) {
+      newErrors.cbfc_certificate =
+        "CBFC Certificate file size must be less than 5MB";
+    }
+
+    // if (!formData.court_order) {
+    //   newErrors.court_order = "Court Order file is required";
+    // } else if (formData.court_order.size > 5 * 1024 * 1024) {
+    //   newErrors.court_order = "Court Order file size must be less than 5MB";
+    // }
+
+    if (formData.court_order && formData.court_order.size > 5 * 1024 * 1024) {
+      newErrors.court_order = "Court Order file size must be less than 5MB";
+    }
+
     if (mode === "single") {
       if (urlafterokay.length == 0) {
         newErrors.url = "Please add url.";
@@ -257,10 +280,23 @@ const CreateRequest = () => {
       mode: mode,
       title: formData.title,
       description: formData.description,
+
       evidenceFile: {
-        name: fileName,
+        name: evidenceFileName,
         size: formData.uploaded_evidence?.size,
         type: formData.uploaded_evidence?.type,
+      },
+
+      cbfcCertificate: {
+        name: cbfcFileName,
+        size: formData.cbfc_certificate?.size,
+        type: formData.cbfc_certificate?.type,
+      },
+
+      courtorder: {
+        name: courOrderFileName,
+        size: formData.court_order?.size,
+        type: formData.court_order?.type,
       },
     };
 
@@ -303,6 +339,14 @@ const CreateRequest = () => {
       }
 
       // Add evidence file if uploaded
+      if (formData.cbfc_certificate instanceof File) {
+        formDataToSend.append("cbfc_certificate", formData.cbfc_certificate);
+      }
+
+      if (formData.court_order instanceof File) {
+        formDataToSend.append("court_order", formData.court_order);
+      }
+
       if (formData.uploaded_evidence instanceof File) {
         formDataToSend.append("uploaded_evidence", formData.uploaded_evidence);
       }
@@ -354,32 +398,82 @@ const CreateRequest = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+
+    const name = e.target.name;
+
     if (file) {
-      // Check file size based on mode
       const maxSize = mode === "single" ? 5 * 1024 * 1024 : 25 * 1024 * 1024;
 
       if (file.size > maxSize) {
         setErrors((prev) => ({
           ...prev,
-          uploaded_evidence: `Evidence file size must be less than ${mode === "single" ? "5MB" : "25MB"}`,
+          [name]: `File size must be less than ${mode === "single" ? "5MB" : "25MB"}`,
         }));
         return;
       }
 
       setFormData((prev) => ({
         ...prev,
-        uploaded_evidence: file,
+        [name]: file,
       }));
-      setFileName(file.name);
-      // Clear error for file field
-      if (errors.uploaded_evidence) {
+
+      // Set file names separately
+      if (name === "uploaded_evidence") {
+        setEvidenceFileName(file.name);
+      }
+      if (name === "cbfc_certificate") {
+        setCbfcFileName(file.name);
+      }
+      if (name === "court_order") {
+        setCourOrderFileName(file.name);
+      }
+
+      // Clear errors
+      if (errors[name]) {
         setErrors((prev) => ({
           ...prev,
-          uploaded_evidence: null,
+          [name]: null,
         }));
       }
     }
   };
+
+  // const handleFileChange = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     // Check file size based on mode
+  //     const maxSize = mode === "single" ? 5 * 1024 * 1024 : 25 * 1024 * 1024;
+
+  //     if (file.size > maxSize) {
+  //       setErrors((prev) => ({
+  //         ...prev,
+  //         uploaded_evidence: `Evidence file size must be less than ${mode === "single" ? "5MB" : "25MB"}`,
+  //         cbfc_certificate: `Evidence file size must be less than "5MB"`,
+  //       }));
+  //       return;
+  //     }
+
+  //     setFormData((prev) => ({
+  //       ...prev,
+  //       uploaded_evidence: file,
+  //       cbfc_certificate: file,
+  //     }));
+  //     setFileName(file.name);
+  //     if (errors.cbfc_certificate) {
+  //       setErrors((prev) => ({
+  //         ...prev,
+  //         cbfc_certificate: null,
+  //       }));
+  //     }
+  //     // Clear error for file field
+  //     if (errors.uploaded_evidence) {
+  //       setErrors((prev) => ({
+  //         ...prev,
+  //         uploaded_evidence: null,
+  //       }));
+  //     }
+  //   }
+  // };
 
   const handleModeChange = (newMode) => {
     setMode(newMode);
@@ -470,30 +564,108 @@ const CreateRequest = () => {
                 </div>
               </div>
 
-              {/* Evidence File */}
               <div className="mb-3">
-                <h6 className="fw-custom title-head">Evidence File:</h6>
-                <div className="file-name">
-                  {previewData.evidenceFile.name ? (
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="mb-3">
+                      <h6 className="fw-custom title-head">CBC Certificate:</h6>
+                      <div className="file-name">
+                        {previewData.cbfcCertificate.name ? (
+                          <>
+                            <div>
+                              <strong>Name:</strong>{" "}
+                              {previewData.cbfcCertificate.name}
+                            </div>
+                            <div>
+                              <strong>Size:</strong>{" "}
+                              {(
+                                previewData.cbfcCertificate.size /
+                                1024 /
+                                1024
+                              ).toFixed(2)}{" "}
+                              MB
+                            </div>
+                            <div>
+                              <strong>Type:</strong>{" "}
+                              {previewData.cbfcCertificate.type || "Unknown"}
+                            </div>
+                          </>
+                        ) : (
+                          <span className="text-muted">No file uploaded</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  {previewData.courtorder.name ? (
                     <>
-                      <div>
-                        <strong>Name:</strong> {previewData.evidenceFile.name}
-                      </div>
-                      <div>
-                        <strong>Size:</strong>{" "}
-                        {(previewData.evidenceFile.size / 1024 / 1024).toFixed(
-                          2,
-                        )}{" "}
-                        MB
-                      </div>
-                      <div>
-                        <strong>Type:</strong>{" "}
-                        {previewData.evidenceFile.type || "Unknown"}
+                      <div className="col-md-6">
+                        <div className="mb-3">
+                          <h6 className="fw-custom title-head">Court Order:</h6>
+                          <div className="file-name">
+                            {previewData.courtorder.name ? (
+                              <>
+                                <div>
+                                  <strong>Name:</strong>{" "}
+                                  {previewData.courtorder.name}
+                                </div>
+                                <div>
+                                  <strong>Size:</strong>{" "}
+                                  {(
+                                    previewData.courtorder.size /
+                                    1024 /
+                                    1024
+                                  ).toFixed(2)}{" "}
+                                  MB
+                                </div>
+                                <div>
+                                  <strong>Type:</strong>{" "}
+                                  {previewData.courtorder.type || "Unknown"}
+                                </div>
+                              </>
+                            ) : (
+                              <span className="text-muted">
+                                No file uploaded
+                              </span>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </>
                   ) : (
-                    <span className="text-muted">No file uploaded</span>
+                    <></>
                   )}
+
+                  <div className="col-md-6">
+                    {/* Evidence File */}
+                    <div className="mb-3">
+                      <h6 className="fw-custom title-head">Evidence File:</h6>
+                      <div className="file-name">
+                        {previewData.evidenceFile.name ? (
+                          <>
+                            <div>
+                              <strong>Name:</strong>{" "}
+                              {previewData.evidenceFile.name}
+                            </div>
+                            <div>
+                              <strong>Size:</strong>{" "}
+                              {(
+                                previewData.evidenceFile.size /
+                                1024 /
+                                1024
+                              ).toFixed(2)}{" "}
+                              MB
+                            </div>
+                            <div>
+                              <strong>Type:</strong>{" "}
+                              {previewData.evidenceFile.type || "Unknown"}
+                            </div>
+                          </>
+                        ) : (
+                          <span className="text-muted">No file uploaded</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -617,7 +789,7 @@ const CreateRequest = () => {
               /* Single URL Mode */
               <>
                 {/* URL Field with Okay Button */}
-              
+
                 <div className="mb-3">
                   <label htmlFor="url" className="form-label">
                     URL <span className="text-danger">*</span>
@@ -796,17 +968,17 @@ const CreateRequest = () => {
               )}
             </div>
 
-            {/* Evidence Upload Field */}
+            {/* CBFC Certificate Upload Field */}
             <div className="mb-3">
-              <label htmlFor="evidence" className="form-label">
-                Evidence File <span className="text-danger">*</span>
+              <label htmlFor="cbfc_certificate" className="form-label">
+                CBFC Certificate <span className="text-danger">*</span>
               </label>
               <div>
                 <input
                   type="file"
-                  className={`form-control ${errors.uploaded_evidence ? "is-invalid" : ""}`}
-                  id="evidence"
-                  name="evidence"
+                  className={`form-control ${errors.cbfc_certificate ? "is-invalid" : ""}`}
+                  id="cbfc_certificate"
+                  name="cbfc_certificate"
                   onChange={handleFileChange}
                   accept="image/*,.pdf,.doc,.docx"
                   disabled={loading}
@@ -819,7 +991,173 @@ const CreateRequest = () => {
               </div>
 
               {/* File Preview */}
-              {fileName && (
+              {cbfcFileName && (
+                <div className="mt-2 p-2 border rounded bg-light">
+                  <div className="d-flex align-items-center">
+                    <div className="me-2">
+                      {formData.cbfc_certificate?.type?.startsWith("image/") ? (
+                        <img
+                          src={URL.createObjectURL(formData.cbfc_certificate)}
+                          alt="Preview"
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            objectFit: "cover",
+                          }}
+                          className="rounded"
+                        />
+                      ) : (
+                        <div
+                          className="bg-secondary text-white rounded p-2"
+                          style={{ width: "40px", height: "40px" }}
+                        >
+                          <i className="bi bi-file-text"></i>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-grow-1">
+                      <small className="text-success d-block">
+                        <strong>{cbfcFileName}</strong>
+                      </small>
+                      <small className="text-muted">
+                        Size:{" "}
+                        {(formData.cbfc_certificate.size / 1024 / 1024).toFixed(
+                          2,
+                        )}{" "}
+                        MB
+                      </small>
+                    </div>
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-danger"
+                      onClick={() => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          cbfc_certificate: null,
+                        }));
+                        setCbfcFileName("");
+                        document.getElementById("cbfc_certificate").value = "";
+                      }}
+                    >
+                      <i className="bi bi-x"></i> Remove
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {errors.cbfc_certificate && (
+                <div className="invalid-feedback d-block">
+                  {errors.cbfc_certificate}
+                </div>
+              )}
+            </div>
+
+            {/* court order Upload Field */}
+            <div className="mb-3">
+              <label htmlFor="court_order" className="form-label">
+                Court Order
+              </label>
+              <div>
+                <input
+                  type="file"
+                  className={`form-control ${errors.court_order ? "is-invalid" : ""}`}
+                  id="court_order"
+                  name="court_order"
+                  onChange={handleFileChange}
+                  accept="image/*,.pdf,.doc,.docx"
+                  disabled={loading}
+                />
+              </div>
+              <div className="form-text">
+                {mode === "single"
+                  ? "Max file size: 5MB. Accepted formats: Images, PDF, DOC, DOCX"
+                  : "Max file size: 25MB. Accepted formats: Images, PDF, DOC, DOCX"}
+              </div>
+
+              {/* File Preview */}
+              {courOrderFileName && (
+                <div className="mt-2 p-2 border rounded bg-light">
+                  <div className="d-flex align-items-center">
+                    <div className="me-2">
+                      {formData.court_order?.type?.startsWith("image/") ? (
+                        <img
+                          src={URL.createObjectURL(formData.court_order)}
+                          alt="Preview"
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            objectFit: "cover",
+                          }}
+                          className="rounded"
+                        />
+                      ) : (
+                        <div
+                          className="bg-secondary text-white rounded p-2"
+                          style={{ width: "40px", height: "40px" }}
+                        >
+                          <i className="bi bi-file-text"></i>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-grow-1">
+                      <small className="text-success d-block">
+                        <strong>{courOrderFileName}</strong>
+                      </small>
+                      <small className="text-muted">
+                        Size:{" "}
+                        {(formData.court_order.size / 1024 / 1024).toFixed(2)}{" "}
+                        MB
+                      </small>
+                    </div>
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-danger"
+                      onClick={() => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          court_order: null,
+                        }));
+                        setCourOrderFileName("");
+                        document.getElementById("court_order").value = "";
+                      }}
+                    >
+                      <i className="bi bi-x"></i> Remove
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {errors.court_order && (
+                <div className="invalid-feedback d-block">
+                  {errors.court_order}
+                </div>
+              )}
+            </div>
+
+            {/* Evidence Upload Field */}
+            <div className="mb-3">
+              <label htmlFor="uploaded_evidence" className="form-label">
+                Evidence File <span className="text-danger">*</span>
+              </label>
+              <div>
+                <input
+                  type="file"
+                  className={`form-control ${errors.uploaded_evidence ? "is-invalid" : ""}`}
+                  id="uploaded_evidence"
+                  name="uploaded_evidence"
+                  onChange={handleFileChange}
+                  accept="image/*,.pdf,.doc,.docx"
+                  disabled={loading}
+                />
+              </div>
+              <div className="form-text">
+                {mode === "single"
+                  ? "Max file size: 5MB. Accepted formats: Images, PDF, DOC, DOCX"
+                  : "Max file size: 25MB. Accepted formats: Images, PDF, DOC, DOCX"}
+              </div>
+
+              {/* File Preview */}
+              {evidenceFileName && (
                 <div className="mt-2 p-2 border rounded bg-light">
                   <div className="d-flex align-items-center">
                     <div className="me-2">
@@ -847,7 +1185,7 @@ const CreateRequest = () => {
                     </div>
                     <div className="flex-grow-1">
                       <small className="text-success d-block">
-                        <strong>{fileName}</strong>
+                        <strong>{evidenceFileName}</strong>
                       </small>
                       <small className="text-muted">
                         Size:{" "}
@@ -867,7 +1205,7 @@ const CreateRequest = () => {
                           ...prev,
                           uploaded_evidence: null,
                         }));
-                        setFileName("");
+                        setEvidenceFileName("");
                         document.getElementById("evidence").value = "";
                       }}
                     >
@@ -886,7 +1224,10 @@ const CreateRequest = () => {
 
             {/* Submit Buttons */}
             <div className="mb-3">
-              <label htmlFor="declaration" className="form-label font-wt-normal">
+              <label
+                htmlFor="declaration"
+                className="form-label font-wt-normal"
+              >
                 <input
                   className={`form-check-input ${errors.title ? "is-invalid" : ""}`}
                   id="declaration"

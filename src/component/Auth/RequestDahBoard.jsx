@@ -46,14 +46,18 @@ const RequestDashboard = () => {
   // Get status badge
   const getStatusBadge = (status) => {
     switch (status) {
-      case 1:
-        return <span className="badge  yellow-txt">Pending</span>;
-      case 2:
-        return <span className="badge green-txt">Approved</span>;
       case 3:
-        return <span className="badge red-txt">Rejected</span>;
+        // return <span className="badg green-txt">Necessary Action Taken</span>;
+        return (
+          <span
+            className="badg green-txt"
+            title="Your complaint has been successfully processed. The concerned ISPs and intermediaries have been duly notified for immediate blocking/disabling of access to the reported pirated links."
+          >
+            Action Taken
+          </span>
+        );
       default:
-        return <span className="badge bg-secondary">Unknown</span>;
+        return <span className="badge  yellow-txt">Under Process</span>;
     }
   };
 
@@ -189,10 +193,10 @@ const RequestDashboard = () => {
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
                 >
-                  <option value="all">All Status</option>
-                  <option value="1">Pending</option>
-                  <option value="2">Approved</option>
-                  <option value="3">Rejected</option>
+                  <option value="all">All Statuses</option>
+                  <option value="1">Under Process</option>
+                  <option value="3">Necessary Action Taken</option>
+                  {/* <option value="3">Rejected</option> */}
                 </select>
               </div>
               <div className="col-md-4">
@@ -257,10 +261,14 @@ const RequestDashboard = () => {
                   <div className="card-header">
                     <div className="d-flex justify-content-between align-items-center">
                       <span className="form-label fw-bold m-0">
-                        Request ID: #{item.id}
+                        Request ID : NZ-{item.id}
                       </span>
                       <div className="d-flex gap-2">
                         {getStatusBadge(item.status)} |{getModeBadge(item.mode)}
+                        {/* {item.status === 3
+                          ? "Necessary Action Taken "
+                          : "Under Process "}
+                        | {getModeBadge(item.mode)} */}
                       </div>
                     </div>
                   </div>

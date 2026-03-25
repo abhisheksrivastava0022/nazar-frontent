@@ -1238,10 +1238,11 @@ const CreateRequest = () => {
                   placeholder=""
                   disabled={loading}
                 />{" "}
-                &nbsp;I hereby declare that I am the copyright holder or an
-                authorized representative of the film/content mentioned above,
-                and that the reported URL(s) contain unauthorized or pirated
-                content shared without permission.
+                &nbsp;I, solemnly affirm that the URLs provided are hosting
+                infringing content. I acknowledge that the Ministry of I&B acts
+                in good faith based on this declaration. I hereby undertake full
+                legal responsibility for any wrongful blocking and indemnify the
+                Ministry against all costs and litigations arising therefrom.
                 <span className="text-danger">*</span>
               </label>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import pdf from "../../../public/images/PDF/Dummy.pdf";
 
 const Resources = () => {
   // Sample data array for resources
@@ -7,21 +8,25 @@ const Resources = () => {
       id: 1,
       title: "Anti-piracy guidelines for film industry",
       image: "/images/word-to-pdf-conversion.svg",
+      src: pdf,
     },
     {
       id: 2,
       title: "Copyright registration process",
       image: "/images/word-to-pdf-conversion.svg",
+      src: pdf,
     },
     {
       id: 3,
       title: "Digital rights management basics",
       image: "/images/word-to-pdf-conversion.svg",
+      src: pdf,
     },
     {
       id: 4,
       title: "Content protection strategies",
       image: "/images/word-to-pdf-conversion.svg",
+      src: pdf,
     },
   ];
 
@@ -52,9 +57,18 @@ const Resources = () => {
                     />
                   </div>
                   <div className="card-footer bg-transparent border-0 pb-3">
-                    <button className="btn btn-outline-primary btn-sm w-100">
-                     <i class="bi bi-download me-1"></i>  Download PDF
-                    </button>
+                    {/* <button className="btn btn-outline-primary btn-sm w-100">
+                      <i class="bi bi-download me-1"></i> Download PDF
+                    </button> */}
+                    <a
+                      href={resource.src}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline-primary btn-sm w-100"
+                    >
+                      <i className="bi bi-download me-1"></i> Download PDF
+                    </a>
                   </div>
                 </div>
               </div>

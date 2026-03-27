@@ -568,7 +568,7 @@ const CreateRequest = () => {
                 <div className="row">
                   <div className="col-md-6">
                     <div className="mb-3">
-                      <h6 className="fw-custom title-head">CBC Certificate:</h6>
+                      <h6 className="fw-custom title-head">CBFC Certificate:</h6>
                       <div className="file-name">
                         {previewData.cbfcCertificate.name ? (
                           <>

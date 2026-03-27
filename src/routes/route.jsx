@@ -1,9 +1,7 @@
 import React from "react";
 import MainLayout from "../component/layout/MainLayout";
-import HomeIndex from "../component/home/HomeIndex";
-import SignIn from "../component/Auth/SignIn";
-import Registration from "../component/Auth/Registration";
-import MovieDetails from "../component/home/MovieDetails";
+
+import Compliance from "../component/Auth/Compliance";
 import OtpLogin from "../component/Auth/OtpLogin";
 import VerifyEmail from "../component/Auth/VerifyEmail";
 import ForgotPassword from "../component/Auth/ForgotPassword";
@@ -30,6 +28,10 @@ export const routes = [
   {
     path: "/",
     element: <OtpLogin />,
+  },
+  {
+    path: "/compliance/:order_id",
+    element: <Compliance />,
   },
   {
     path: "/login",

@@ -56,6 +56,16 @@ const RequestDashboard = () => {
             Action Taken
           </span>
         );
+      case 6:
+        // return <span className="badg green-txt">Necessary Action Taken</span>;
+        return (
+          <span
+            className="badg green-txt"
+            title="Your complaint has been successfully processed. The concerned ISPs and intermediaries have been duly notified for immediate blocking/disabling of access to the reported pirated links."
+          >
+            Action Taken
+          </span>
+        );
       default:
         return <span className="badge  yellow-txt">Under Process</span>;
     }
@@ -237,18 +247,18 @@ const RequestDashboard = () => {
               {(searchTerm ||
                 statusFilter !== "all" ||
                 modeFilter !== "all") && (
-                <button
-                  className="btn btn-outline-secondary mt-2"
-                  onClick={() => {
-                    setSearchTerm("");
-                    setStatusFilter("all");
-                    setModeFilter("all");
-                  }}
-                >
-                  <i className="bi bi-x-circle me-2"></i>
-                  Clear Filters
-                </button>
-              )}
+                  <button
+                    className="btn btn-outline-secondary mt-2"
+                    onClick={() => {
+                      setSearchTerm("");
+                      setStatusFilter("all");
+                      setModeFilter("all");
+                    }}
+                  >
+                    <i className="bi bi-x-circle me-2"></i>
+                    Clear Filters
+                  </button>
+                )}
             </div>
           )}
 

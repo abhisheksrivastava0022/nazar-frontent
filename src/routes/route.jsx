@@ -35,7 +35,7 @@ export const routes = [
   },
   {
     path: "/login",
-    element: <OtpLoginV2 />,
+    element: <OtpLogin />,
   },
   {
     path: "/prahari",

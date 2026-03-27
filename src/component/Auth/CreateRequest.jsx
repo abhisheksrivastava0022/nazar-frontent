@@ -735,7 +735,7 @@ const CreateRequest = () => {
           )}
           <div className="mb-2">
             <label htmlFor="title" className="form-label">
-              Movie TItle <span className="text-danger">*</span>
+              Movie Title <span className="text-danger">*</span>
             </label>
             <input
               className={`form-control ${errors.title ? "is-invalid" : ""}`}

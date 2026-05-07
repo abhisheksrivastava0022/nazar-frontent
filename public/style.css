@@ -56,6 +56,7 @@ body {
 .nav-link i {
   font-size: 18px;
 }
+
 .nav-link {
   margin-bottom: 0;
   border-bottom: 1px solid #b1b1b1;
@@ -73,6 +74,7 @@ body {
   font-size: 18px;
   font-weight: 600;
 }
+
 /* .nav-link.logout-btn {
   color: red !important;
 } */
@@ -481,6 +483,7 @@ body {
   text-align: center;
   border-right: 1px solid #b1b1b1;
   height: 100%;
+
   /* position: fixed; */
   & .user-detail {
     display: flex;
@@ -493,12 +496,14 @@ body {
     flex-direction: column;
     line-height: normal;
     margin-bottom: 30px;
+
     & i {
       font-size: 50px;
       color: #899bc2 !important;
       line-height: normal;
     }
   }
+
   & .menu-list {
     color: black;
 
@@ -511,28 +516,34 @@ body {
 .menu-list i {
   padding-right: 10px;
 }
+
 .card {
   overflow: hidden !important;
 }
+
 .complaint-form {
   color: black;
+
   & .headeing {
     padding: 23px;
     border-bottom: 1px solid #b1b1b1;
     text-transform: uppercase;
   }
+
   & .details {
     padding: 20px;
   }
 }
+
 .complaint-form .details {
   padding: 20px 35px 20px 25px;
 
   & .card-header {
     background-color: #f5f5f5;
     color: #000;
-    padding:;
+    padding: ;
   }
+
   & .searching {
     /* background-color: gray; */
     /* color: white !important; */
@@ -544,16 +555,19 @@ body {
     & .input-group {
       background-color: transparent !important;
     }
+
     & .input-group-text {
       background-color: transparent !important;
     }
   }
 }
+
 .searching .form-control {
   background-color: transparent;
   border-radius: 0;
   border: 0px;
 }
+
 .searching .form-select {
   background-color: transparent !important;
   border-radius: 0;
@@ -565,6 +579,7 @@ body {
 .menu-list .nav-pills.nav-link {
   border-radius: none !important;
 }
+
 .menu-list button {
   border-radius: inherit !important;
   padding: 10px 15px 10px 0px;
@@ -578,16 +593,19 @@ body {
 }
 
 input[type="file"]::file-selector-button {
-  background-color: #1d3f8a; /* change color */
+  background-color: #1d3f8a;
+  /* change color */
   color: white;
   border: none;
   padding: 6px 12px;
   cursor: pointer;
 }
+
 input[type="file"]::file-selector-button:hover {
   background-color: #1d3f8a !important;
   opacity: inherit !important;
 }
+
 .outline-common {
   background-color: transparent !important;
   border-radius: 25px;
@@ -613,12 +631,15 @@ input[type="file"]::file-selector-button:hover {
   background-color: #f76050 !important;
   color: #fff !important;
 }
+
 .font-wt-normal {
   font-weight: 400;
 }
+
 .card-footer {
   background-color: #d9d9d9;
 }
+
 .btn-outline-danger {
   border-radius: 25px;
 }
@@ -630,81 +651,98 @@ input[type="file"]::file-selector-button:hover {
   color: #1d3f8a;
   padding: 6px 20px;
 }
+
 .btn-outline-primary:hover {
   background-color: #1d3f8a !important;
   color: #fff !important;
 }
+
 .searching .blue-bg {
   background-color: #1d3f8a !important;
   color: #fff !important;
   padding: 15px 30px;
   border-radius: 25px 0px 0 25px;
 }
+
 .searching .blue-bg i {
   color: #fff !important;
 }
+
 .yellow-txt {
   color: #f3a600;
   font-weight: normal;
   font-size: 15px;
 }
+
 .green-txt {
   color: #197935;
   font-weight: normal;
   font-size: 15px;
 }
+
 .red-txt {
   color: #f30707;
   font-weight: normal;
   font-size: 15px;
 }
+
 .blue-txt {
   color: #1d3f8a !important;
   font-weight: normal;
   font-size: 15px;
 }
+
 .teal-txt {
   color: #333;
   font-weight: normal;
   font-size: 15px;
 }
+
 .summary-cards-container .card-title {
   color: #1d3f8a;
   font-size: 18px;
   text-transform: capitalize;
 }
+
 .summary-cards-container .accordion-header {
   font-size: 16px;
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
 .summary-cards-container h2,
 h3 {
   font-size: 16px;
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
 .summary-cards-container a {
   color: #1d3f8a;
   font-size: 15px;
 }
+
 .text-muted {
   color: #000 !important;
   font-size: 15px;
 }
+
 .card-body {
   font-size: 15px;
 }
+
 .form-check .form-check-input {
   width: 20px;
   height: 20px;
   margin-right: 10px;
   margin-top: 3px;
 }
+
 .form-check-input:checked {
   background-color: #1d3f8a;
   border-color: #1d3f8a;
 }
+
 .border-radius-norm {
   border-radius: 0 5px 5px 0;
 }
@@ -718,4 +756,9 @@ h3 {
 .hover-effect:hover {
   transform: translateY(-5px);
   transition: 0.3s ease;
+}
+
+.btn:disabled {
+  color: gray !important;
+  border-color: gray !important
 }

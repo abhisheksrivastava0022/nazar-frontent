@@ -789,11 +789,36 @@ h3 {
 .top-header{ column-gap: 20px; justify-content: space-between;}
 .logo{ display: flex;}
 .profile-login .btn:hover{ background-color: #1d3f8a;}
-.profile-login .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{ background-color: #1d3f8a; color: #000!important;}
-
+#profile .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{color: #000!important;}
+.login-method-selector .active{color: #fff!important;}
  
 .CAPTCHA {
   display: flex;
   justify-content: center;
   border-radius: 4px;
+}
+.btn { border-radius: 25px;}
+.btn:focus{ background-color: #fff!important; color: #000!important;}
+.btn-outline-secondary{ color: #fff!important;}
+.menu-header{
+    position: sticky;
+    top: 20px;
+    z-index: 99;
+   
+}
+
+.complaint-form{
+    height: 100vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Optional scrollbar styling */
+.complaint-form::-webkit-scrollbar{
+    width: 6px;
+}
+
+.complaint-form::-webkit-scrollbar-thumb{
+    background: #c1c1c1;
+    border-radius: 10px;
 }

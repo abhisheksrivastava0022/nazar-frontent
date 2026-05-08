@@ -807,7 +807,7 @@ const CreateRequest = () => {
                     />
                     <button
                       type="button"
-                      className="btn btn-outline-primary border-radius-norm"
+                      className="btn btn-outline-primary border-radius-norm addbtn"
                       onClick={addSingleUrl}
                     >
                       Add

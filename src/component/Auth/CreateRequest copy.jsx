@@ -635,9 +635,9 @@ const CreateRequest = () => {
                         placeholder="https://example.com"
                         disabled={loading}
                       />
-                      <button
+                      <button 
                         type="button"
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-primary addbtn"
                         onClick={addSingleUrl}
                       >
                         Add

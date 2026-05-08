@@ -157,7 +157,7 @@ const RequestDashboard = () => {
         target="_blank"
         rel="noopener noreferrer"
         className="d-flex align-items-center gap-2 px-3 py-2 border rounded text-decoration-none text-primary bg-light hover-shadow"
-        style={{ minWidth: "180px" }}
+        style={{ minWidth: "auto" }}
       >
         <i className="bi bi-download"></i>
         <span className="small fw-medium">{label}</span>
@@ -165,7 +165,7 @@ const RequestDashboard = () => {
     ) : (
       <div
         className="d-flex align-items-center gap-2 px-3 py-2 border rounded bg-light text-muted"
-        style={{ minWidth: "180px" }}
+        style={{ minWidth: "auto" }}
       >
         <i className="bi bi-file-earmark-x"></i>
         <span className="small">{label}</span>

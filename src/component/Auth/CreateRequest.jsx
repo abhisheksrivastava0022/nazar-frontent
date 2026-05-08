@@ -733,7 +733,7 @@ const CreateRequest = () => {
               {errors.submit}
             </div>
           )}
-          <div className="mb-2">
+          <div className="mb-4">
             <label htmlFor="title" className="form-label">
               Movie Title <span className="text-danger">*</span>
             </label>
@@ -790,7 +790,7 @@ const CreateRequest = () => {
               <>
                 {/* URL Field with Okay Button */}
 
-                <div className="mb-3">
+                <div className="mb-4">
                   <label htmlFor="url" className="form-label">
                     URL <span className="text-danger">*</span>
                   </label>
@@ -843,7 +843,7 @@ const CreateRequest = () => {
               /* Bulk URL Mode */
               <>
                 {/* Download Template Link */}
-                <div className="mb-3">
+                <div className="mb-4">
                   <label className="form-label">
                     Upload a CSV file with multiple URLs for bulk processing{" "}
                     <span className="text-danger">*</span>
@@ -947,7 +947,7 @@ const CreateRequest = () => {
             )}
 
             {/* Description Field - Common for both modes */}
-            <div className="mb-3">
+            <div className="mb-4">
               <label htmlFor="description" className="form-label">
                 Description <span className="text-danger">*</span>
               </label>
@@ -969,7 +969,7 @@ const CreateRequest = () => {
             </div>
 
             {/* CBFC Certificate Upload Field */}
-            <div className="mb-3">
+            <div className="mb-4">
               <label htmlFor="cbfc_certificate" className="form-label">
                 CBFC Certificate <span className="text-danger">*</span>
               </label>
@@ -1053,7 +1053,7 @@ const CreateRequest = () => {
             </div>
 
             {/* court order Upload Field */}
-            <div className="mb-3">
+            <div className="mb-4">
               <label htmlFor="court_order" className="form-label">
                 Court Order
               </label>
@@ -1135,7 +1135,7 @@ const CreateRequest = () => {
             </div>
 
             {/* Evidence Upload Field */}
-            <div className="mb-3">
+            <div className="mb-4">
               <label htmlFor="uploaded_evidence" className="form-label">
                 Evidence File <span className="text-danger">*</span>
               </label>
@@ -1223,7 +1223,7 @@ const CreateRequest = () => {
             </div>
 
             {/* Submit Buttons */}
-            <div className="mb-3">
+            <div className="mb-4">
               <label
                 htmlFor="declaration"
                 className="form-label font-wt-normal"

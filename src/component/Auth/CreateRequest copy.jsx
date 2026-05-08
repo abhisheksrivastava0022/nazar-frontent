@@ -562,7 +562,7 @@ const CreateRequest = () => {
               </div>
             )}
 
-            <div className="mb-3">
+            <div className="mb-4">
               <label htmlFor="title" className="form-label">
                 Movie TItle <span className="text-danger">*</span>
               </label>

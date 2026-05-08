@@ -24,7 +24,7 @@ const MainLayout = () => {
   };
   return (
     <>
-      <div className="container mb-4">
+      <div className="container-xl mb-4">
         <Header />
         <div className="mt-3">
           <div className="card">
@@ -95,13 +95,13 @@ const MainLayout = () => {
                         </button>
                       </div>
                     </div>
-                    <div className="menu-image">
+                    {/* <div className="menu-image">
                       <img
                         src="/images/menu-img.png"
                         alt=""
                         className="img-fluid"
                       />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="col-md-8 g-0">

@@ -61,7 +61,8 @@ const Header = () => {
   };
   return (
     <>
-      <header className="d-flex align-items-center mt-2 py-2 ">
+      <header className="d-flex align-items-center mt-2 py-2 top-header ">
+        <div className="logo">
         <a href="/" className="d-block me-3" aria-label="Home">
           <img
             // src="/logonazar.png"
@@ -87,7 +88,7 @@ const Header = () => {
             loading="lazy"
           />
         </a>
-
+</div>
         {/* Commented out for future use
   <a href="/" className="parhari d-block ms-3" aria-label="Prahari">
     <img 
@@ -98,6 +99,17 @@ const Header = () => {
     />
   </a>
   */}
+
+  <div class="dropdown profile-login">
+  <button class="btn btn-primary outline-common dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+   <i class="bi bi-person-circle"></i> Digital Team
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
       </header>
     </>
   );

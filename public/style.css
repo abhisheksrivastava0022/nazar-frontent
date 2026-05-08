@@ -2,7 +2,7 @@
 @import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css";
 
 body {
-  background: #f5f5f5;
+  background: #fff;
   color: #000;
   font-size: 15px;
 }
@@ -45,12 +45,12 @@ body {
   padding: 15px 30px;
   text-align: left;
   font-size: 16px;
-  color: #000;
+  color: #fff;
   font-weight: 500;
 }
 
 .tab-btn button:hover {
-  color: #1d3f8a;
+  color: #fff;
 }
 
 .nav-link i {
@@ -58,23 +58,28 @@ body {
 }
 
 .nav-link {
-  margin-bottom: 0;
-  border-bottom: 1px solid #b1b1b1;
+  margin-bottom: 5px;
+
   text-align: start;
-  color: black;
+  color: #fff;
   border-radius: none !important;
+  text-transform: uppercase;
+  border: solid 1px #1d3f8a;
 }
 
 .nav-pills .nav-link.active {
   /* color: black; */
-  color: #1d3f8a;
+  color: #000;
   background: white;
   /* border: dashed 1px #1d3f8a; */
   border-right: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-}
+  border: solid 1px #fff;
+ 
 
+}
+.nav-pills .nav-link:hover{ color: #fff;  background-color:transparent; border: solid 1px #fff;}
 /* .nav-link.logout-btn {
   color: red !important;
 } */
@@ -372,6 +377,7 @@ body {
 
 .yellow-text {
   color: #f3a600;
+  font-weight: 500;
 }
 
 @media screen and (min-device-width: 320px) and (max-device-width: 767px) {
@@ -497,7 +503,7 @@ body {
 .menu-header {
   text-align: center;
   border-right: 1px solid #b1b1b1;
-  height: 100%;
+  height: 100%; background: #1d3f8a;
 
   /* position: fixed; */
   & .user-detail {
@@ -510,7 +516,7 @@ body {
     padding: 15px 30px;
     flex-direction: column;
     line-height: normal;
-    margin-bottom: 30px;
+    margin-bottom: 30px; display: none;
 
     & i {
       font-size: 50px;
@@ -522,8 +528,8 @@ body {
   & .menu-list {
     color: black;
 
-    padding-left: 50px;
-    padding-right: 35px;
+    padding: 50px ;
+   
     margin-bottom: 50px;
   }
 }
@@ -533,14 +539,14 @@ body {
 }
 
 .card {
-  overflow: hidden !important;
+  overflow: hidden !important; border-radius: 10px;;
 }
 
 .complaint-form {
   color: black;
 
   & .headeing {
-    padding: 23px;
+    padding: 23px 35px 23px 35px;
     border-bottom: 1px solid #b1b1b1;
     text-transform: uppercase;
   }
@@ -551,7 +557,7 @@ body {
 }
 
 .complaint-form .details {
-  padding: 20px 35px 20px 25px;
+  padding: 35px 50px 35px 40px;
 
   & .card-header {
     background-color: #f5f5f5;
@@ -596,10 +602,10 @@ body {
 }
 
 .menu-list button {
-  border-radius: inherit !important;
-  padding: 10px 15px 10px 0px;
+  border-radius:25px!important;
+  padding: 10px 15px 10px 15px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px; letter-spacing: 1px;
 }
 
 .input-group .btn {
@@ -663,8 +669,9 @@ input[type="file"]::file-selector-button:hover {
   background-color: transparent !important;
   border-radius: 25px;
   border-color: #1d3f8a !important;
-  color: #1d3f8a;
-  padding: 6px 20px;
+  color: #000;
+  padding: 8px 20px;
+  font-weight: 500;
 }
 
 .btn-outline-primary:hover {
@@ -685,36 +692,36 @@ input[type="file"]::file-selector-button:hover {
 
 .yellow-txt {
   color: #f3a600;
-  font-weight: normal;
+  font-weight:500;
   font-size: 15px;
 }
 
 .green-txt {
   color: #197935;
-  font-weight: normal;
+  font-weight:500;
   font-size: 15px;
 }
 
 .red-txt {
   color: #f30707;
-  font-weight: normal;
+  font-weight:500;
   font-size: 15px;
 }
 
 .blue-txt {
   color: #1d3f8a !important;
-  font-weight: normal;
+  font-weight: 500;
   font-size: 15px;
 }
 
 .teal-txt {
   color: #333;
-  font-weight: normal;
+  font-weight:500;
   font-size: 15px;
 }
 
 .summary-cards-container .card-title {
-  color: #1d3f8a;
+  color: #000;
   font-size: 18px;
   text-transform: capitalize;
 }
@@ -777,3 +784,12 @@ h3 {
   color: gray !important;
   border-color: gray !important;
 }
+
+.rounded{ border-radius: 25px!important;}
+.bg-light { border: solid 1px #1d3f8a!important;}
+.top-header{ column-gap: 20px; justify-content: space-between;}
+.logo{ display: flex;}
+.profile-login .btn:hover{ background-color: #1d3f8a;}
+.profile-login .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{ background-color: #1d3f8a; color: #000!important;}
+
+ 

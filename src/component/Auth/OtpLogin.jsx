@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import CustomSnackbar from "../library/CustomSnackbar";
 import ApiClient from "../ApiClient";
 import CustomGoogleLogin from "../CustomGoogleLogin";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const OtpLogin = () => {
   let { formname = null } = useParams();
@@ -383,57 +384,130 @@ const OtpLogin = () => {
                       <div className="mb-4">
                         {loginMethod === "mobile" ? (
                           <div className="form-group">
-                            <label className="form-label">Mobile Number</label>
-                            <div className="input-group input-group-lg">
-                              <span className="input-group-text">
-                                <i className="bi bi-phone"></i>
-                              </span>
-                              <input
-                                type="tel"
-                                className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
-                                name="mobile"
-                                value={formData.mobile}
-                                onChange={handleChange}
-                                placeholder="Enter 10-digit mobile number"
-                                maxLength="10"
-                                autoFocus
-                              />
-                              {errors.mobile && (
-                                <div className="invalid-feedback">
-                                  {errors.mobile}
-                                </div>
-                              )}
+                            <div className="mb-3">
+                              <label className="form-label">
+                                Certificate Number / Application Number
+                              </label>
+                              <div className="input-group input-group-lg">
+                                {/* <span className="input-group-text">
+                                  <i className="bi bi-phone"></i>
+                                </span> */}
+                                <input
+                                  type="text"
+                                  className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
+                                  name="certificate_number"
+                                  value={formData.certificate_number}
+                                  onChange={handleChange}
+                                  placeholder="Enter Your Certificate Number or Application Number"
+                                  // maxLength="10"
+                                  autoFocus
+                                />
+                                {errors.certificate_number && (
+                                  <div className="invalid-feedback">
+                                    {errors.certificate_number}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                            <div>
+                              <label className="form-label">
+                                Mobile Number
+                              </label>
+                              <div className="input-group input-group-lg">
+                                <span className="input-group-text">
+                                  <i className="bi bi-phone"></i>
+                                </span>
+                                <input
+                                  type="tel"
+                                  className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
+                                  name="mobile"
+                                  value={formData.mobile}
+                                  onChange={handleChange}
+                                  placeholder="Enter 10-digit mobile number"
+                                  maxLength="10"
+                                  autoFocus
+                                />
+                                {errors.mobile && (
+                                  <div className="invalid-feedback">
+                                    {errors.mobile}
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           </div>
                         ) : (
                           <div className="form-group">
-                            <label className="form-label">Email Address</label>
-                            <div className="input-group input-group-lg">
-                              <span className="input-group-text">
-                                <i className="bi bi-envelope"></i>
-                              </span>
-                              <input
-                                type="email"
-                                className={`form-control ${errors.email ? "is-invalid" : ""}`}
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="Enter your email address"
-                                autoFocus
-                              />
-                              {errors.email && (
-                                <div className="invalid-feedback">
-                                  {errors.email}
-                                </div>
-                              )}
+                            <div className="mb-3">
+                              <label className="form-label">
+                                Certificate Number / Application Number
+                              </label>
+                              <div className="input-group input-group-lg">
+                                {/* <span className="input-group-text">
+                                  <i className="bi bi-phone"></i>
+                                </span> */}
+                                <input
+                                  type="text"
+                                  className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
+                                  name="certificate_number"
+                                  value={formData.certificate_number}
+                                  onChange={handleChange}
+                                  placeholder="Enter Your Certificate Number or Application Number"
+                                  // maxLength="10"
+                                  autoFocus
+                                />
+                                {errors.certificate_number && (
+                                  <div className="invalid-feedback">
+                                    {errors.certificate_number}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                            <div>
+                              <label className="form-label">
+                                Email Address
+                              </label>
+                              <div className="input-group input-group-lg">
+                                <span className="input-group-text">
+                                  <i className="bi bi-envelope"></i>
+                                </span>
+                                <input
+                                  type="email"
+                                  className={`form-control ${errors.email ? "is-invalid" : ""}`}
+                                  name="email"
+                                  value={formData.email}
+                                  onChange={handleChange}
+                                  placeholder="Enter your email address"
+                                  autoFocus
+                                />
+                                {errors.email && (
+                                  <div className="invalid-feedback">
+                                    {errors.email}
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           </div>
                         )}
                       </div>
 
+                      <div className="CAPTCHA">
+                        <div className="text-center">
+                          <ReCAPTCHA
+                            // ref={captchaRef}
+                            sitekey="6LdGG00rAAAAACZLHbrJGlxWWKZG0x8DuA9V0V6k" // Your site key
+                            // onChange={handleCaptchaChange}
+                          />
+                        </div>
+                      </div>
+                      {errors.captcha && (
+                        <Typography color="error" variant="body2">
+                          {errors.captcha}
+                        </Typography>
+                      )}
+
                       {/* Send OTP Button */}
                       <button
-                        className="btn btn-primary btn-lg w-100 send-otp-btn"
+                        className="btn btn-primary btn-lg w-100 send-otp-btn mt-3"
                         onClick={handleSendOtp}
                         disabled={loading}
                       >

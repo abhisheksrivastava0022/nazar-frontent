@@ -76,10 +76,12 @@ body {
   font-size: 16px;
   font-weight: 600;
   border: solid 1px #fff;
- 
-
 }
-.nav-pills .nav-link:hover{ color: #fff;  background-color:transparent; border: solid 1px #fff;}
+.nav-pills .nav-link:hover {
+  color: #fff;
+  background-color: transparent;
+  border: solid 1px #fff;
+}
 /* .nav-link.logout-btn {
   color: red !important;
 } */
@@ -502,7 +504,8 @@ body {
 .menu-header {
   text-align: center;
   border-right: 1px solid #b1b1b1;
-  height: 100%; background: #1d3f8a;
+  height: 100%;
+  background: #1d3f8a;
 
   /* position: fixed; */
   & .user-detail {
@@ -515,7 +518,8 @@ body {
     padding: 15px 30px;
     flex-direction: column;
     line-height: normal;
-    margin-bottom: 30px; display: none;
+    margin-bottom: 30px;
+    display: none;
 
     & i {
       font-size: 50px;
@@ -527,8 +531,8 @@ body {
   & .menu-list {
     color: black;
 
-    padding: 50px ;
-   
+    padding: 50px;
+
     margin-bottom: 50px;
   }
 }
@@ -538,7 +542,8 @@ body {
 }
 
 .card {
-  overflow: hidden !important; border-radius: 10px;;
+  overflow: hidden !important;
+  border-radius: 10px;
 }
 
 .complaint-form {
@@ -601,10 +606,11 @@ body {
 }
 
 .menu-list button {
-  border-radius:25px!important;
+  border-radius: 25px !important;
   padding: 10px 15px 10px 15px;
   font-weight: 600;
-  font-size: 16px; letter-spacing: 1px;
+  font-size: 16px;
+  letter-spacing: 1px;
 }
 
 .input-group .btn {
@@ -691,19 +697,19 @@ input[type="file"]::file-selector-button:hover {
 
 .yellow-txt {
   color: #f3a600;
-  font-weight:500;
+  font-weight: 500;
   font-size: 15px;
 }
 
 .green-txt {
   color: #197935;
-  font-weight:500;
+  font-weight: 500;
   font-size: 15px;
 }
 
 .red-txt {
   color: #f30707;
-  font-weight:500;
+  font-weight: 500;
   font-size: 15px;
 }
 
@@ -715,7 +721,7 @@ input[type="file"]::file-selector-button:hover {
 
 .teal-txt {
   color: #333;
-  font-weight:500;
+  font-weight: 500;
   font-size: 15px;
 }
 
@@ -784,42 +790,75 @@ h3 {
   border-color: gray !important;
 }
 
-.rounded{ border-radius: 25px!important;}
-.bg-light { border: solid 1px #1d3f8a!important;}
-.top-header{ column-gap: 20px; justify-content: space-between;}
-.logo{ display: flex;}
-.profile-login .btn:hover{ background-color: #1d3f8a;}
-#profile .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{color: #000!important;}
-.login-method-selector .active{color: #fff!important;}
- 
+.rounded {
+  border-radius: 25px !important;
+}
+.bg-light {
+  border: solid 1px #1d3f8a !important;
+}
+.top-header {
+  column-gap: 20px;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+}
+.profile-login .btn:hover {
+  background-color: #1d3f8a;
+}
+#profile .btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  color: #000 !important;
+}
+.login-method-selector .active {
+  color: #fff !important;
+}
+
 .CAPTCHA {
   display: flex;
   justify-content: center;
   border-radius: 4px;
 }
-.btn { border-radius: 25px;}
-.btn:focus{ background-color: #fff!important; color: #000!important;}
-.btn-outline-secondary{ color: #fff!important;}
-.menu-header{
-    position: sticky;
-    top: 20px;
-    z-index: 99;
-   
+
+.captcha-erroe p {
+  text-align: center;
+  padding-top: 20px;
+  color: red !important;
+}
+.btn {
+  border-radius: 25px;
+}
+.btn:focus {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+.btn-outline-secondary {
+  color: #fff !important;
+}
+.menu-header {
+  position: sticky;
+  top: 20px;
+  z-index: 99;
 }
 
-.complaint-form{
-    height: 100vh;
-    overflow-y: auto;
-    padding-right: 10px;
+.complaint-form {
+  height: 100vh;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 
 /* Optional scrollbar styling */
-.complaint-form::-webkit-scrollbar{
-    width: 6px;
+.complaint-form::-webkit-scrollbar {
+  width: 6px;
 }
 
-.complaint-form::-webkit-scrollbar-thumb{
-    background: #c1c1c1;
-    border-radius: 10px;
+.complaint-form::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
 }
-.addbtn{ border-radius: .375rem;}
+.addbtn {
+  border-radius: 0.375rem;
+}

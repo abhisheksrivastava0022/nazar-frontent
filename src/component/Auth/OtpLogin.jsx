@@ -4,6 +4,7 @@ import CustomSnackbar from "../library/CustomSnackbar";
 import ApiClient from "../ApiClient";
 import CustomGoogleLogin from "../CustomGoogleLogin";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Typography } from "@mui/material";
 
 const OtpLogin = () => {
   let { formname = null } = useParams();
@@ -19,6 +20,7 @@ const OtpLogin = () => {
     anchorHorizontal: "right",
   });
 
+  const [captcha, setCaptcha] = useState(null);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1); // 1: Enter mobile/email, 2: Enter OTP
   const [loginMethod, setLoginMethod] = useState("mobile"); // 'mobile' or 'email'
@@ -27,11 +29,21 @@ const OtpLogin = () => {
     mobile: "",
     email: "",
     otp: ["", "", "", "", "", ""],
+    captcha: "",
   });
   const [errors, setErrors] = useState({});
 
   // Refs for OTP inputs
   const otpRefs = useRef([]);
+
+  // Handle captcha
+  const handleCaptchaChange = (cap) => {
+    setCaptcha(cap);
+    // setCaptcha("11111222");
+    // setFormData((prev) => ({ ...prev, captcha: "11111222" }));
+    setFormData((prev) => ({ ...prev, captcha: cap }));
+    setErrors((prev) => ({ ...prev, captcha: "" }));
+  };
 
   // Timer for OTP resend
   // useEffect(() => {
@@ -106,6 +118,16 @@ const OtpLogin = () => {
   const validateStep1 = () => {
     const validationErrors = {};
 
+    if (!captcha) {
+      validationErrors.captcha = "Please complete the CAPTCHA.";
+    }
+
+    if (!formData.certificate_id) {
+      // alert("certificate_id");
+      validationErrors.certificate_id =
+        "Enter your Certificate Number / Application Number.";
+    }
+
     if (loginMethod === "mobile") {
       const mobileRegex = /^[0-9]{10}$/;
       if (!formData.mobile.trim()) {
@@ -145,10 +167,13 @@ const OtpLogin = () => {
 
     setLoading(true);
     try {
-      const payload =
-        loginMethod === "mobile"
+      const payload = {
+        ...(loginMethod === "mobile"
           ? { mobile: formData.mobile }
-          : { email: formData.email };
+          : { email: formData.email }),
+        captcha: formData.captcha,
+        certificate_id: formData.certificate_id,
+      };
 
       const response = await postRequestApi(`request/generate-otp`, {
         ...payload,
@@ -394,17 +419,17 @@ const OtpLogin = () => {
                                 </span> */}
                                 <input
                                   type="text"
-                                  className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
-                                  name="certificate_number"
-                                  value={formData.certificate_number}
+                                  className={`form-control ${errors.certificate_id ? "is-invalid" : ""}`}
+                                  name="certificate_id"
+                                  value={formData.certificate_id}
                                   onChange={handleChange}
                                   placeholder="Enter Your Certificate Number or Application Number"
                                   // maxLength="10"
                                   autoFocus
                                 />
-                                {errors.certificate_number && (
+                                {errors.certificate_id && (
                                   <div className="invalid-feedback">
-                                    {errors.certificate_number}
+                                    {errors.certificate_id}
                                   </div>
                                 )}
                               </div>
@@ -447,17 +472,17 @@ const OtpLogin = () => {
                                 </span> */}
                                 <input
                                   type="text"
-                                  className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
-                                  name="certificate_number"
-                                  value={formData.certificate_number}
+                                  className={`form-control ${errors.certificate_id ? "is-invalid" : ""}`}
+                                  name="certificate_id"
+                                  value={formData.certificate_id}
                                   onChange={handleChange}
                                   placeholder="Enter Your Certificate Number or Application Number"
                                   // maxLength="10"
                                   autoFocus
                                 />
-                                {errors.certificate_number && (
+                                {errors.certificate_id && (
                                   <div className="invalid-feedback">
-                                    {errors.certificate_number}
+                                    {errors.certificate_id}
                                   </div>
                                 )}
                               </div>
@@ -495,15 +520,17 @@ const OtpLogin = () => {
                           <ReCAPTCHA
                             // ref={captchaRef}
                             sitekey="6LdGG00rAAAAACZLHbrJGlxWWKZG0x8DuA9V0V6k" // Your site key
-                            // onChange={handleCaptchaChange}
+                            onChange={handleCaptchaChange}
                           />
                         </div>
                       </div>
-                      {errors.captcha && (
-                        <Typography color="error" variant="body2">
-                          {errors.captcha}
-                        </Typography>
-                      )}
+                      <div className="captcha-erroe">
+                        {errors.captcha && (
+                          <Typography color="error" variant="body2">
+                            {errors.captcha}
+                          </Typography>
+                        )}
+                      </div>
 
                       {/* Send OTP Button */}
                       <button

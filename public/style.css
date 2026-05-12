@@ -862,3 +862,8 @@ h3 {
 .addbtn {
   border-radius: 0.375rem;
 }
+
+.Login-btn {
+  border: none;
+  background: transparent;
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ApiClient from "../ApiClient";
+import { useSelector } from "react-redux";
 
 const BASE_URL_API = `${import.meta.env.VITE_BASE_URL}/evidence/`;
 
@@ -18,6 +19,10 @@ const CreateRequest = () => {
     court_order: null,
     uploaded_evidence: null,
   });
+
+  const filmData = useSelector((state) => state.filmData.film);
+
+  console.log({ filmData });
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -568,7 +573,9 @@ const CreateRequest = () => {
                 <div className="row">
                   <div className="col-md-6">
                     <div className="mb-3">
-                      <h6 className="fw-custom title-head">CBFC Certificate:</h6>
+                      <h6 className="fw-custom title-head">
+                        CBFC Certificate:
+                      </h6>
                       <div className="file-name">
                         {previewData.cbfcCertificate.name ? (
                           <>
@@ -741,10 +748,10 @@ const CreateRequest = () => {
               className={`form-control ${errors.title ? "is-invalid" : ""}`}
               id="title"
               name="title"
-              value={formData.title}
-              onChange={handleInputChange}
+              value={filmData.title}
+              // onChange={handleInputChange}
               placeholder="Please provide title for a movie"
-              disabled={loading}
+              disabled="true"
             />
             {errors.title && (
               <div className="invalid-feedback d-block">{errors.title}</div>
@@ -969,7 +976,7 @@ const CreateRequest = () => {
             </div>
 
             {/* CBFC Certificate Upload Field */}
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label htmlFor="cbfc_certificate" className="form-label">
                 CBFC Certificate <span className="text-danger">*</span>
               </label>
@@ -990,7 +997,6 @@ const CreateRequest = () => {
                   : "Max file size: 25MB. Accepted formats: Images, PDF, DOC, DOCX"}
               </div>
 
-              {/* File Preview */}
               {cbfcFileName && (
                 <div className="mt-2 p-2 border rounded bg-light">
                   <div className="d-flex align-items-center">
@@ -1050,7 +1056,7 @@ const CreateRequest = () => {
                   {errors.cbfc_certificate}
                 </div>
               )}
-            </div>
+            </div> */}
 
             {/* court order Upload Field */}
             <div className="mb-4">

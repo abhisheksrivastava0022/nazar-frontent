@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import ApiClient from "../ApiClient";
-import { setUserData } from "../../action";
+// import { setUserData } from "../../action";
+import { setUserData } from "../../reducer/userDataSlice";
+import { setFilmData } from "../../reducer/filmDataSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -46,10 +48,15 @@ const Header = () => {
   const loadUserData = async () => {
     console.log({ token });
     if (token) {
-      const response = await getRequestApiwithLogin("delegate/profile");
+      // const response = await getRequestApiwithLogin("delegate/profile");
+      const response = await getRequestApiwithLogin("request/info");
+
+      console.log({ response });
 
       if (response.status) {
-        dispatch(setUserData(response.data));
+        // dispatch(setUserData(response.data));
+        dispatch(setUserData(response?.data.user));
+        dispatch(setFilmData(response?.data.movie));
       }
     }
   };
@@ -59,36 +66,37 @@ const Header = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
+
   return (
     <>
       <header className="d-flex align-items-center mt-2 py-2 top-header ">
         <div className="logo">
-        <a href="/" className="d-block me-3" aria-label="Home">
-          <img
-            // src="/logonazar.png"
-            src="/nazar.png"
-            alt="National Anti-Piracy and Zero-Tolerance Action on Rights Infringement"
-            // className="logo-width"
-            className="img-fluid"
-            style={{ maxHeight: "70px" }}
-            loading="lazy"
-          />
-        </a>
+          <a href="/" className="d-block me-3" aria-label="Home">
+            <img
+              // src="/logonazar.png"
+              src="/nazar.png"
+              alt="National Anti-Piracy and Zero-Tolerance Action on Rights Infringement"
+              // className="logo-width"
+              className="img-fluid"
+              style={{ maxHeight: "70px" }}
+              loading="lazy"
+            />
+          </a>
 
-        <a
-          href="/"
-          className="parhari d-block"
-          aria-label="Ministry of Information & Broadcasting"
-        >
-          <img
-            src="/mib.png"
-            alt="Ministry of Information & Broadcasting"
-            className="img-fluid"
-            style={{ maxHeight: "70px" }}
-            loading="lazy"
-          />
-        </a>
-</div>
+          <a
+            href="/"
+            className="parhari d-block"
+            aria-label="Ministry of Information & Broadcasting"
+          >
+            <img
+              src="/mib.png"
+              alt="Ministry of Information & Broadcasting"
+              className="img-fluid"
+              style={{ maxHeight: "70px" }}
+              loading="lazy"
+            />
+          </a>
+        </div>
         {/* Commented out for future use
   <a href="/" className="parhari d-block ms-3" aria-label="Prahari">
     <img 
@@ -100,16 +108,29 @@ const Header = () => {
   </a>
   */}
 
-  <div class="dropdown profile-login">
-  <button class="btn btn-primary outline-common dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-   <i class="bi bi-person-circle"></i> Digital Team
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
-</div>
+        <div class="dropdown profile-login">
+          <button
+            class="btn btn-primary outline-common dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="bi bi-person-circle"></i> Digital Team
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <button
+                className="Login-btn"
+                type="button"
+                onClick={hangleLogout}
+              >
+                <i class="bi bi-box-arrow-right"></i> Logout
+              </button>
+            </li>
+            {/* <li><a class="dropdown-item" href="#">Another action</a></li> */}
+            {/* <li><a class="dropdown-item" href="#">Something else here</a></li> */}
+          </ul>
+        </div>
       </header>
     </>
   );

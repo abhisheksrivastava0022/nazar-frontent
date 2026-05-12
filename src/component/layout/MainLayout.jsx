@@ -84,7 +84,7 @@ const MainLayout = () => {
                         >
                           <i class="bi bi-music-note-list"></i> Resource
                         </button>
-                        <button
+                        {/* <button
                           class={`nav-link logout-btn`}
                           data-bs-toggle="pill"
                           data-bs-target="#tab4"
@@ -92,7 +92,7 @@ const MainLayout = () => {
                           onClick={logout}
                         >
                           <i class="bi bi-box-arrow-right"></i> Logout
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                     {/* <div className="menu-image">

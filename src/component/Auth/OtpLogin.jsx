@@ -229,6 +229,7 @@ const OtpLogin = () => {
         ...(loginMethod === "mobile"
           ? { mobile: formData.mobile }
           : { email: formData.email }),
+        certificate_id: formData.certificate_id,
       };
 
       const response = await postRequestApi(

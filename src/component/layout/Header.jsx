@@ -42,6 +42,8 @@ const Header = () => {
     }
   }, [userData]);
 
+  const [data, setData] = useState({});
+
   useEffect(() => {
     loadUserData();
   }, [token]);
@@ -55,6 +57,7 @@ const Header = () => {
 
       if (response.status) {
         // dispatch(setUserData(response.data));
+        setData(response?.data.user);
         dispatch(setUserData(response?.data.user));
         dispatch(setFilmData(response?.data.movie));
       }
@@ -115,7 +118,8 @@ const Header = () => {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <i class="bi bi-person-circle"></i> Digital Team
+            <i class="bi bi-person-circle"></i> {data?.first_name}{" "}
+            {data?.last_name}
           </button>
           <ul class="dropdown-menu">
             <li>

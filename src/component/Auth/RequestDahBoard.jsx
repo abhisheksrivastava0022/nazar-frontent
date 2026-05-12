@@ -247,18 +247,18 @@ const RequestDashboard = () => {
               {(searchTerm ||
                 statusFilter !== "all" ||
                 modeFilter !== "all") && (
-                  <button
-                    className="btn btn-outline-secondary mt-2"
-                    onClick={() => {
-                      setSearchTerm("");
-                      setStatusFilter("all");
-                      setModeFilter("all");
-                    }}
-                  >
-                    <i className="bi bi-x-circle me-2"></i>
-                    Clear Filters
-                  </button>
-                )}
+                <button
+                  className="btn btn-outline-secondary mt-2"
+                  onClick={() => {
+                    setSearchTerm("");
+                    setStatusFilter("all");
+                    setModeFilter("all");
+                  }}
+                >
+                  <i className="bi bi-x-circle me-2"></i>
+                  Clear Filters
+                </button>
+              )}
             </div>
           )}
 
@@ -323,14 +323,14 @@ const RequestDashboard = () => {
                         <FileItem file={item.csv_file} label="CSV File" />
                       )}
 
-                      <FileItem
+                      {/* <FileItem
                         file={item.cbfc_certificate}
                         label={
                           item.cbfc_certificate
                             ? "CBFC Certificate"
                             : "No CBFC Certificate"
                         }
-                      />
+                      /> */}
 
                       <FileItem
                         file={item.court_order}

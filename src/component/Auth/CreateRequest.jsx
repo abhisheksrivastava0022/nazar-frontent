@@ -12,7 +12,6 @@ const CreateRequest = () => {
   const [mode, setMode] = useState("single"); // 'single' or 'bulk'
   const [urlafterokay, setUrlafterokay] = useState([]); // 'single' or 'bulk'
   const [formData, setFormData] = useState({
-    title: "",
     url: "",
     description: "",
     cbfc_certificate: null,
@@ -214,16 +213,16 @@ const CreateRequest = () => {
     if (!formData.declaration) {
       newErrors.declaration = "Declaration is required";
     }
-    if (!formData.title.trim()) {
-      newErrors.title = "Movie Title is required";
-    }
+    // if (!formData.title.trim()) {
+    //   newErrors.title = "Movie Title is required";
+    // }
 
-    if (!formData.cbfc_certificate) {
-      newErrors.cbfc_certificate = "CBFC Certificate file is required";
-    } else if (formData.cbfc_certificate.size > 5 * 1024 * 1024) {
-      newErrors.cbfc_certificate =
-        "CBFC Certificate file size must be less than 5MB";
-    }
+    // if (!formData.cbfc_certificate) {
+    //   newErrors.cbfc_certificate = "CBFC Certificate file is required";
+    // } else if (formData.cbfc_certificate.size > 5 * 1024 * 1024) {
+    //   newErrors.cbfc_certificate =
+    //     "CBFC Certificate file size must be less than 5MB";
+    // }
 
     // if (!formData.court_order) {
     //   newErrors.court_order = "Court Order file is required";
@@ -283,7 +282,7 @@ const CreateRequest = () => {
     // Prepare preview data
     const previewInfo = {
       mode: mode,
-      title: formData.title,
+      // title: formData.title,
       description: formData.description,
 
       evidenceFile: {
@@ -292,11 +291,11 @@ const CreateRequest = () => {
         type: formData.uploaded_evidence?.type,
       },
 
-      cbfcCertificate: {
-        name: cbfcFileName,
-        size: formData.cbfc_certificate?.size,
-        type: formData.cbfc_certificate?.type,
-      },
+      // cbfcCertificate: {
+      //   name: cbfcFileName,
+      //   size: formData.cbfc_certificate?.size,
+      //   type: formData.cbfc_certificate?.type,
+      // },
 
       courtorder: {
         name: courOrderFileName,
@@ -337,16 +336,16 @@ const CreateRequest = () => {
         formDataToSend.append("mode", "single");
       } else {
         // Bulk mode - send the CSV file
-        formDataToSend.append("csv_file", bulkFile);
+        // formDataToSend.append("csv_file", bulkFile);
         formDataToSend.append("description", formData.description);
         formDataToSend.append("mode", "bulk");
         formDataToSend.append("urls", JSON.stringify(bulkUrls));
       }
 
       // Add evidence file if uploaded
-      if (formData.cbfc_certificate instanceof File) {
-        formDataToSend.append("cbfc_certificate", formData.cbfc_certificate);
-      }
+      // if (formData.cbfc_certificate instanceof File) {
+      //   formDataToSend.append("cbfc_certificate", formData.cbfc_certificate);
+      // }
 
       if (formData.court_order instanceof File) {
         formDataToSend.append("court_order", formData.court_order);
@@ -571,7 +570,7 @@ const CreateRequest = () => {
 
               <div className="mb-3">
                 <div className="row">
-                  <div className="col-md-6">
+                  {/* <div className="col-md-6">
                     <div className="mb-3">
                       <h6 className="fw-custom title-head">
                         CBFC Certificate:
@@ -602,7 +601,7 @@ const CreateRequest = () => {
                         )}
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {previewData.courtorder.name ? (
                     <>
                       <div className="col-md-6">
@@ -748,7 +747,7 @@ const CreateRequest = () => {
               className={`form-control ${errors.title ? "is-invalid" : ""}`}
               id="title"
               name="title"
-              value={filmData.title}
+              value={filmData?.title}
               // onChange={handleInputChange}
               placeholder="Please provide title for a movie"
               disabled="true"
@@ -1235,7 +1234,7 @@ const CreateRequest = () => {
                 className="form-label font-wt-normal"
               >
                 <input
-                  className={`form-check-input ${errors.title ? "is-invalid" : ""}`}
+                  className={`form-check-input ${errors.declaration ? "is-invalid" : ""}`}
                   id="declaration"
                   name="declaration"
                   type="checkbox"

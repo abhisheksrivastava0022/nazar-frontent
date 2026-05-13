@@ -867,3 +867,9 @@ h3 {
   border: none;
   background: transparent;
 }
+
+@media (max-width: 576px) {
+  .logo-header img {
+    height: 33px;
+  }
+}

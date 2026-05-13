@@ -27,7 +27,7 @@ const CreateRequest = () => {
   const [loading, setLoading] = useState(false);
   // const [fileName, setFileName] = useState("");
   const [evidenceFileName, setEvidenceFileName] = useState("");
-  const [cbfcFileName, setCbfcFileName] = useState("");
+  // const [cbfcFileName, setCbfcFileName] = useState("");
   const [courOrderFileName, setCourOrderFileName] = useState("");
   const [isValidUrl, setIsValidUrl] = useState(false);
   const [bulkFile, setBulkFile] = useState(null);
@@ -425,9 +425,9 @@ const CreateRequest = () => {
       if (name === "uploaded_evidence") {
         setEvidenceFileName(file.name);
       }
-      if (name === "cbfc_certificate") {
-        setCbfcFileName(file.name);
-      }
+      // if (name === "cbfc_certificate") {
+      //   setCbfcFileName(file.name);
+      // }
       if (name === "court_order") {
         setCourOrderFileName(file.name);
       }

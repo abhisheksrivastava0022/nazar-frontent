@@ -55,6 +55,10 @@ export const routes = [
         element: <CreateRequest />,
       },
       {
+        path: "/request/:id",
+        element: <CreateRequest />,
+      },
+      {
         path: "/resources",
         element: <Resources />,
       },

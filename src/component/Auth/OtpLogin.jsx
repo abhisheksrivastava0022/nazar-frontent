@@ -520,7 +520,7 @@ const OtpLogin = () => {
                         <div className="text-center">
                           <ReCAPTCHA
                             // ref={captchaRef}
-                            sitekey="6LdGG00rAAAAACZLHbrJGlxWWKZG0x8DuA9V0V6k" // Your site key
+                            sitekey="6LdiM_AsAAAAAJbAbitSbzTWWEcMuccEqJshjgQ9" // Your site key
                             onChange={handleCaptchaChange}
                           />
                         </div>

@@ -412,7 +412,7 @@ const OtpLogin = () => {
                           <div className="form-group">
                             <div className="mb-3">
                               <label className="form-label">
-                                Certificate Number / Application Number
+                                Application Number
                               </label>
                               <div className="input-group input-group-lg">
                                 {/* <span className="input-group-text">
@@ -424,7 +424,7 @@ const OtpLogin = () => {
                                   name="certificate_id"
                                   value={formData.certificate_id}
                                   onChange={handleChange}
-                                  placeholder="Enter Your Certificate Number or Application Number"
+                                  placeholder="Enter Your  Application Number"
                                   // maxLength="10"
                                   autoFocus
                                 />
@@ -465,7 +465,7 @@ const OtpLogin = () => {
                           <div className="form-group">
                             <div className="mb-3">
                               <label className="form-label">
-                                Certificate Number / Application Number
+                                Application Number
                               </label>
                               <div className="input-group input-group-lg">
                                 {/* <span className="input-group-text">
@@ -477,7 +477,7 @@ const OtpLogin = () => {
                                   name="certificate_id"
                                   value={formData.certificate_id}
                                   onChange={handleChange}
-                                  placeholder="Enter Your Certificate Number or Application Number"
+                                  placeholder="Enter Your  Application Number"
                                   // maxLength="10"
                                   autoFocus
                                 />

@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ApiClient from "../ApiClient";
 import { useSelector } from "react-redux";
+import InfoIcon from '@mui/icons-material/Info';
+import {
 
+  IconButton,
+  Tooltip,
+
+} from "@mui/material";
 const BASE_URL_API = `${import.meta.env.VITE_BASE_URL}/evidence/`;
 
 const CreateRequest = () => {
@@ -503,7 +509,11 @@ const CreateRequest = () => {
                 <span>
                   {previewData.mode === "single"
                     ? "Manually Url Entered"
-                    : "Bulk URLs via CSV"}
+                    : <>
+                      "Bulk URLs via CSV"
+
+                    </>}
+
                 </span>
               </div>
 
@@ -726,6 +736,15 @@ const CreateRequest = () => {
               />
               <label className="form-check-label" htmlFor="bulkMode">
                 Upload URL(s) via CSV
+                <Tooltip title="CSV (Comma-Separated Values) is a plain text file format used to store and exchange tabular data, with each value separated by a comma.">
+                  <IconButton
+                    edge="end"
+                    size="small"
+                  >
+
+                    <InfoIcon />
+                  </IconButton>
+                </Tooltip>
               </label>
             </div>
           </div>
@@ -1146,18 +1165,19 @@ const CreateRequest = () => {
 // Helper function to get status text
 const getStatusText = (status) => {
   switch (status) {
-    case 1: return "Submitted";
-    case 2: return "Under Process";
-    case 3: return "Under Process";
+    case 1: return "In Progress";
+    case 2: return "In progress";
+    case 3: return "In progress";
     case 4: return "Rejected";
-    case 5: return "Under Process";
-    case 6: return "Compliance Done";
+    case 5: return "In progress";
+    case 6: return "Take Down";
     case 7: return "Under Process";
     case 8: return "More Clarification Required";
-    case 9: return "Information Sent";
-    case 10: return "Resolved";
+    case 9: return "Inprogress";
+    case 10: return "Take Down";
     default: return "Unknown Status";
   }
 };
+
 
 export default CreateRequest;

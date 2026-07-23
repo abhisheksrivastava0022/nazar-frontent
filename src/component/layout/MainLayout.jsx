@@ -64,7 +64,7 @@ const MainLayout = () => {
                           type="button"
                           onClick={() => navigate("/request/create")}
                         >
-                          <i class="bi bi-people"></i> Register Complaint
+                          <i class="bi bi-people"></i> Register New Complaint
                         </button>
                         <button
                           class={`nav-link ${location.pathname == "/request-list" ? "active" : ""}`}

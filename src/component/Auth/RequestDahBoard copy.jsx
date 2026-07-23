@@ -120,7 +120,7 @@ const RequestDashboard = () => {
                 onClick={() => navigate("/request/create")}
               >
                 <i className="bi bi-file-earmark-plus me-2"></i>
-                Register Complaint
+                Register New Complaint
               </button>
             </div>
           </div>
@@ -191,18 +191,18 @@ const RequestDashboard = () => {
               {(searchTerm ||
                 statusFilter !== "all" ||
                 modeFilter !== "all") && (
-                <button
-                  className="btn btn-outline-secondary mt-2"
-                  onClick={() => {
-                    setSearchTerm("");
-                    setStatusFilter("all");
-                    setModeFilter("all");
-                  }}
-                >
-                  <i className="bi bi-x-circle me-2"></i>
-                  Clear Filters
-                </button>
-              )}
+                  <button
+                    className="btn btn-outline-secondary mt-2"
+                    onClick={() => {
+                      setSearchTerm("");
+                      setStatusFilter("all");
+                      setModeFilter("all");
+                    }}
+                  >
+                    <i className="bi bi-x-circle me-2"></i>
+                    Clear Filters
+                  </button>
+                )}
             </div>
           )}
 

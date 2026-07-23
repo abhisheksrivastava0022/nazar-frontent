@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ApiClient from "../ApiClient";
 import { useNavigate } from "react-router-dom";
-
+import InfoIcon from '@mui/icons-material/Info';
 const BASE_URL_API = `${import.meta.env.VITE_BASE_URL}/evidence`;
 
 const RequestDashboard = () => {
@@ -50,27 +50,27 @@ const RequestDashboard = () => {
   const getStatusBadge = (status) => {
     switch (status) {
       case 1:
-        return <span className="badge bg-info text-white">SUBMITTED</span>;
+        return <span className="badge bg-info text-white">In Progress</span>;
       case 2:
-        return <span className="badge bg-warning text-dark">UNDER PROCESS</span>;
+        return <span className="badge bg-warning text-dark">In Progress</span>;
       case 3:
-        return <span className="badge bg-warning text-dark">UNDER PROCESS</span>;
+        return <span className="badge bg-warning text-dark">In Progress</span>;
       case 4:
         return <span className="badge bg-danger text-white">REJECTED</span>;
       case 5:
-        return <span className="badge bg-warning text-dark">UNDER PROCESS</span>;
+        return <span className="badge bg-warning text-dark">In Progress</span>;
       case 6:
-        return <span className="badge bg-success text-white">COMPLIANCE DONE</span>;
+        return <span className="badge bg-success text-white">Take Down</span>;
       case 7:
-        return <span className="badge bg-warning text-dark">UNDER PROCESS</span>;
+        return <span className="badge bg-warning text-dark">In Progress</span>;
       case 8:
         return <span className="badge bg-danger text-white">MORE CLARIFICATION REQUIRED</span>;
       case 9:
-        return <span className="badge bg-primary text-white">INFORMATION SENT</span>;
+        return <span className="badge bg-primary text-white">In Progress</span>;
       case 10:
-        return <span className="badge bg-success text-white">RESOLVED</span>;
+        return <span className="badge bg-success text-white">Take Down</span>;
       default:
-        return <span className="badge bg-secondary text-white">UNDER PROCESS</span>;
+        return <span className="badge bg-secondary text-white">In Progress</span>;
     }
   };
 
@@ -232,13 +232,13 @@ const RequestDashboard = () => {
                   onChange={(e) => setStatusFilter(e.target.value)}
                 >
                   <option value="all">All Statuses</option>
-                  <option value="1">Submitted</option>
-                  <option value="2,3,5,7">Under Process</option>
+                  <option value="1,2,3,5,7">Inprogress</option>
+
                   <option value="4">Rejected</option>
                   <option value="6">Compliance Done</option>
                   <option value="8">More Clarification Required</option>
                   <option value="9">Information Sent</option>
-                  <option value="10">Resolved</option>
+                  <option value="10">Take Down</option>
                 </select>
               </div>
               <div className="col-md-4">
@@ -484,16 +484,16 @@ const RequestDashboard = () => {
 // Helper function to get status text
 const getStatusText = (status) => {
   switch (status) {
-    case 1: return "Submitted";
-    case 2: return "Under Process";
-    case 3: return "Under Process";
+    case 1: return "In Progress";
+    case 2: return "In progress";
+    case 3: return "In progress";
     case 4: return "Rejected";
-    case 5: return "Under Process";
-    case 6: return "Compliance Done";
+    case 5: return "In progress";
+    case 6: return "Take Down";
     case 7: return "Under Process";
     case 8: return "More Clarification Required";
-    case 9: return "Information Sent";
-    case 10: return "Resolved";
+    case 9: return "Inprogress";
+    case 10: return "Take Down";
     default: return "Unknown Status";
   }
 };
